@@ -19,17 +19,17 @@ public abstract class AdventOfCode2022Day1
     public static void main(String[] args)
     {
         List<String> lines = Utils.readLines(INPUT_DAY_1_TXT);
-        List<ElveCalories> elves = getElveCalories(lines);
+        List<ElfCalories> elves = getElfCalories(lines);
         int maxCalories = getMaxCalories(elves);
         System.out.println(maxCalories);
         int nMaxCalories = getMaxNCalories(3, elves);
         System.out.println(nMaxCalories);
     }
-    public static class ElveCalories
+    public static class ElfCalories
     {
         private final List<Integer> calories;
 
-        private ElveCalories(List<Integer> calories)
+        private ElfCalories(List<Integer> calories)
         {
             this.calories = calories;
         }
@@ -40,9 +40,9 @@ public abstract class AdventOfCode2022Day1
         }
     }
 
-    static List<ElveCalories> getElveCalories(List<String> lines)
+    static List<ElfCalories> getElfCalories(List<String> lines)
     {
-        List<ElveCalories> elveCalories = new ArrayList<>();
+        List<ElfCalories> elfCalories = new ArrayList<>();
         List<Integer> currentCalories = new ArrayList<>();
         for (String line : lines)
         {
@@ -50,7 +50,7 @@ public abstract class AdventOfCode2022Day1
             {
                 if (!currentCalories.isEmpty())
                 {
-                    elveCalories.add(new ElveCalories(currentCalories));
+                    elfCalories.add(new ElfCalories(currentCalories));
                     currentCalories = new ArrayList<>();
                 }
             }
@@ -61,19 +61,19 @@ public abstract class AdventOfCode2022Day1
         }
         if (!currentCalories.isEmpty())
         {
-            elveCalories.add(new ElveCalories(currentCalories));
+            elfCalories.add(new ElfCalories(currentCalories));
         }
-        return elveCalories;
+        return elfCalories;
     }
 
-    static int getMaxCalories(List<ElveCalories> elveCalories)
+    static int getMaxCalories(List<ElfCalories> elfCalories)
     {
-        return elveCalories.stream().map(ElveCalories::calcCalories).mapToInt(i->i).max().orElse(0);
+        return elfCalories.stream().map(ElfCalories::calcCalories).mapToInt(i->i).max().orElse(0);
     }
 
-    static int getMaxNCalories(int number, List<ElveCalories> elveCalories)
+    static int getMaxNCalories(int number, List<ElfCalories> elfCalories)
     {
-        List<Integer> sorted = elveCalories.stream().map(ElveCalories::calcCalories).sorted().collect(Collectors.toList());
+        List<Integer> sorted = elfCalories.stream().map(ElfCalories::calcCalories).sorted().collect(Collectors.toList());
         return IntStream.range(0, number).map(i -> sorted.get(sorted.size() - 1 - i)).sum();
     }
 

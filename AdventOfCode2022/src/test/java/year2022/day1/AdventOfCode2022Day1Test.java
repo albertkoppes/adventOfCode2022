@@ -18,7 +18,7 @@ class AdventOfCode2022Day1Test
     {
         final List<String> lines = Utils.readLines(INPUT_DAY_1A_TXT);
         assertEquals(14, lines.size());
-        List<AdventOfCode2022Day1.ElveCalories> elfCalories = AdventOfCode2022Day1.getElveCalories(lines);
+        List<AdventOfCode2022Day1.ElfCalories> elfCalories = AdventOfCode2022Day1.getElfCalories(lines);
         assertEquals(5, elfCalories.size());
         assertEquals(24000, AdventOfCode2022Day1.getMaxCalories(elfCalories));
         assertEquals(45000, AdventOfCode2022Day1.getMaxNCalories(3, elfCalories));
@@ -27,7 +27,7 @@ class AdventOfCode2022Day1Test
     void getElves()
     {
         final List<String> lines = Utils.readLines(INPUT_DAY_1_TXT);
-        List<AdventOfCode2022Day1.ElveCalories> elfCalories = AdventOfCode2022Day1.getElveCalories(lines);
+        List<AdventOfCode2022Day1.ElfCalories> elfCalories = AdventOfCode2022Day1.getElfCalories(lines);
         assertEquals(72478, AdventOfCode2022Day1.getMaxCalories(elfCalories));
     }
 }
